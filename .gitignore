@@ -2,13 +2,16 @@
 # Qt creator files and directoires
 #
 
-build/qt/*/Makefile*
+*Makefile*
 *_Debug
 *_Release
 *.debug
 *.release
 *.pro.user
 *.pdb
+
+# Eaagles pre-processed files
+*.edl
 
 tmp/
 bin/

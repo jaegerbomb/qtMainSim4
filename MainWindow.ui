@@ -13,7 +13,13 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
-  <widget class="QWidget" name="centralwidget"/>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QtMainSim4::MapView" name="mapView"/>
+    </item>
+   </layout>
+  </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
@@ -26,6 +32,15 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QtMainSim4::MapView</class>
+   <extends>QGraphicsView</extends>
+   <header>MapView.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+
  <resources/>
  <connections/>
 </ui>
