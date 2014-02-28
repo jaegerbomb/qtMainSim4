@@ -1,0 +1,36 @@
+#
+# Qt creator files and directoires
+#
+
+build/qt/*/Makefile*
+*_Debug
+*_Release
+*.debug
+*.release
+*.pro.user
+*.pdb
+
+tmp/
+bin/
+
+#
+# Main Linux apps
+#
+qtMainSim4
+
+#
+# backup files
+#
+*.bak
+*~
+
+#
+# compiled/linked/executable files
+#
+*.so
+*.o
+*.a
+*.lib
+*.exe
+*.exp
+
