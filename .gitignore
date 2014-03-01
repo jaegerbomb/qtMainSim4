@@ -15,6 +15,8 @@
 
 tmp/
 bin/
+debug/
+release/
 
 #
 # Main Linux apps

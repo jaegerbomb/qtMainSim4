@@ -1,3 +1,5 @@
+MSVC_VER = vs2010
+
 # OpenEaagles package(s)
 OE_ROOT = $$(OE_ROOT)
 isEmpty(OE_ROOT) OE_ROOT = $$PWD/../OpenEaagles
@@ -36,6 +38,7 @@ RCC_DIR = ./tmp/rcc
 win32:CONFIG(release, debug|release): LIBS +=           \
     # open eaagles
     -L$${OE_ROOT}/lib/$${MSVC_VER}/                      \
+    -loeSimulation -loeSensors -loeDafif              \
     -loeBasic                                            \
     # system
     -lwinmm                                              \
@@ -45,6 +48,7 @@ win32:CONFIG(release, debug|release): LIBS +=           \
 else:win32:CONFIG(debug, debug|release): LIBS +=        \
     # open eaagles
     -L$${OE_ROOT}/lib/$${MSVC_VER}/                     \
+    -loeSimulation_d -loeSensors_d -loeDafif_d              \
     -loeBasic_d                                         \
     # system
     -lwinmm                                             \
