@@ -2,6 +2,7 @@
 #include "openeaagles/basic/units/Angles.h"
 
 #include <QPainter>
+#include <QGraphicsSceneMouseEvent>
 #include <sstream>
 
 namespace QtMainSim4 {
@@ -27,6 +28,7 @@ MapItem::MapItem(MapView* v, QGraphicsItem *parent)
    cosineLatReference = 1.0;
    northUp = true;
    setHeading(0);
+   init = false;
 }
 
 QRectF MapItem::boundingRect() const
@@ -59,6 +61,48 @@ void MapItem::updateBG()
    pixWERes = (range / double(bRect.width())) * vpRatio;
 
    update();
+}
+
+// ---
+// mouseMoveEvent() - called when the mouse is held down and moved
+// ---
+void MapItem::mouseMoveEvent(QGraphicsSceneMouseEvent* event)
+{
+   if (event != 0 && event->buttons() & Qt::LeftButton) {
+      // determine our delta
+      int deltaX = event->lastPos().x() - event->scenePos().x();
+      int deltaY = event->lastPos().y() - event->scenePos().y();
+      moveMap(deltaY, deltaX);
+   }
+}
+
+
+// ---
+// mousePressEvent() - callback from when the mouse is pressed
+// ---
+void MapItem::mousePressEvent(QGraphicsSceneMouseEvent* )
+{
+   // all we do is stub this function out so it will accept the mouse
+   // button
+}
+
+// wheelEvent - called when the mouse wheel is scrolled
+void MapItem::wheelEvent(QGraphicsSceneWheelEvent* event)
+{
+   double x = getRange();
+   if (event->delta() < 0) {
+      if (x < 5000) {
+         x += x * 0.1;
+      }
+      else x = 5000;
+   }
+   else {
+      if (x > 1) {
+         x -= x * 0.1;
+      }
+      else x = 1;
+   }
+   setRange(x);
 }
 
 // ---
@@ -297,5 +341,16 @@ void MapItem::llToPixels(const double lat, const double lon, double &py, double 
    px = acX / pixWERes;
    py = -(acY / pixNSRes);
 }
+
+void MapItem::initialize(const double lat, const double lon, const double range)
+{
+   if (!init) {
+      setRefLat(lat);
+      setRefLon(lon);
+      setRange(range);
+      init = true;
+   }
+}
+
 
 }

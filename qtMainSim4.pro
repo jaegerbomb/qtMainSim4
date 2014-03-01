@@ -18,6 +18,7 @@ TEMPLATE = app
 SOURCES += *.cpp
 FORMS += *.ui
 HEADERS += *.h
+OTHER_FILES += configs/*.epp
 
 # include paths
 INCLUDEPATH += \
@@ -57,4 +58,7 @@ else:unix:!macx:!symbian: LIBS +=                       \
     -loeBasic                                         \
     # system
     -lX11 -lpthread -lrt
+
+RESOURCES += \
+    data/icons.qrc
 

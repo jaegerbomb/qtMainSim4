@@ -6,11 +6,17 @@
 // Basic map that does map math for us.
 namespace QtMainSim4 {
 
+class MapView;
+
 class MapItem: public QGraphicsItem
 {
 public:
    MapItem(MapView* v, QGraphicsItem* parent = 0);
    ~MapItem();
+
+   // initialize using given ref lat / lon range
+   virtual void initialize(const double lat, const double lon, const double range);
+   bool isInit() const;
 
    // background call (from the graphics thread)
    virtual void updateBG();
@@ -57,6 +63,10 @@ protected:
    double getNSPixelRes() const;
    double getWEPixelRes() const;
 
+   // Qt interface
+   virtual void wheelEvent(QGraphicsSceneWheelEvent* event);
+   virtual void mousePressEvent(QGraphicsSceneMouseEvent* event);
+   virtual void mouseMoveEvent(QGraphicsSceneMouseEvent* event);
    QRectF getBoundingRect() const;
 
 private:
@@ -89,6 +99,7 @@ private:
 
    // Our view
    MapView* view;
+   bool init;        // our we initialized
 };
 
 // inline functions
@@ -103,6 +114,7 @@ inline bool MapItem::setNorthUp(const bool x)            { northUp = x; return t
 inline bool MapItem::isNorthUp() const                   { return northUp; }
 inline double MapItem::getNSPixelRes() const             { return pixNSRes; }
 inline double MapItem::getWEPixelRes() const             { return pixWERes; }
+inline bool MapItem::isInit() const                      { return init; }
 
 }
 

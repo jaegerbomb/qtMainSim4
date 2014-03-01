@@ -22,6 +22,10 @@ public:
 public slots:
    // update ourselves
    virtual void refreshWindow();
+   virtual void play();
+   virtual void pause();
+   virtual void ff();
+   virtual void reset();
 
 protected:
    virtual void closeEvent(QCloseEvent* event);

@@ -6,6 +6,7 @@
 namespace QtMainSim4 {
 class Station;
 class MapItem;
+class PlayerItem;
 
 class MapView : public QGraphicsView
 {
@@ -23,11 +24,13 @@ public slots:
 protected:
    virtual void resizeEvent(QResizeEvent *event);
 
-
 private:
+   void clearPlayers();
    Station* stn;     // holds a station for reference
    MapItem* map;     // our map
+   QList<PlayerItem*> players;      // our "graphical" players
 };
+
 
 }
 

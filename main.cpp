@@ -85,7 +85,7 @@ int main(int argc, char *argv[])
    funcCall = "cpp ";
 #endif
    strcpy(fileNames, funcCall);
-   strcat(fileNames, "inputs/");
+   strcat(fileNames, "configs/");
    if (strlen(fileName) < 60){
       strcat(fileNames, fileName);
       strcpy(fileNames + strlen(fileNames)-2, "pp");
