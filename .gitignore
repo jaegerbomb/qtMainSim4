@@ -39,3 +39,5 @@ qtMainSim4
 *.exe
 *.exp
 
+# Exceptions
+!mcpp.exe
